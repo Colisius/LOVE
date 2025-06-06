@@ -1,0 +1,235 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
+    min-height: 100vh;
+    position: relative;
+}
+.bg-romantico {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(135deg, #1a1a2e 60%, #e94560 100%);
+    opacity: 0.98;
+}
+.titulo {
+    text-align: center;
+    color: #fff;
+    font-size: 2.7rem;
+    margin-top: 40px;
+    margin-bottom: 32px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 16px #0008;
+    z-index: 2;
+    position: relative;
+}
+.mapa-hy {
+    position: relative;
+    width: 800px;
+    height: 600px;
+    margin: 0 auto 32px auto;
+    z-index: 2;
+}
+.hy-svg {
+    position: absolute;
+    left: 0; top: 0;
+    width: 800px;
+    height: 600px;
+    z-index: 1;
+}
+.linha-mapa {
+    fill: none;
+    stroke: #e94560;
+    stroke-width: 10;
+    stroke-dasharray: 24 16;
+    filter: drop-shadow(0 0 8px #e94560aa);
+    animation: pulseLine 1.2s infinite;
+    transition: stroke 0.3s;
+}
+@keyframes pulseLine {
+    0%, 100% { stroke-width: 10; stroke: #e94560; }
+    50% { stroke-width: 18; stroke: #ffb6b9; }
+}
+.momento-mapa {
+    position: absolute;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.quadro-momento {
+    background: #fff;
+    border: 3px solid #e94560;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px #e9456040;
+    padding: 10px 8px 8px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 110px;
+    min-width: 0;
+    max-width: 110px;
+    min-height: 140px;
+    max-height: 170px;
+    position: relative;
+    margin-bottom: 8px;
+    transition: transform 0.18s, box-shadow 0.18s;
+    cursor: pointer;
+}
+.quadro-momento:hover {
+    transform: scale(1.07) rotate(-2deg);
+    box-shadow: 0 8px 32px #e9456080;
+    border-color: #ffb6b9;
+}
+.quadro-momento img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    border: 2px solid #ffb6b9;
+    box-shadow: 0 2px 8px #e9456022;
+}
+.descricao {
+    color: #e94560;
+    font-size: 1.08rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+}
+.modal-momento {
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,20,0.93); /* Mais escuro e opaco */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeInModal 0.3s;
+}
+@keyframes fadeInModal {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+.modal-conteudo {
+    background: #000000;
+    border-radius: 28px;
+    box-shadow: 0 8px 40px #e9456080;
+    padding: 32px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 220px;
+    max-width: 90vw;
+    min-height: 380px;
+    max-height: 90vh;
+    position: relative;
+    border: 4px solid #e94560;
+    opacity: 0;
+    transform: scale(0.92) translateY(40px);
+    animation: modalShow 0.45s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+    font-family: 'Poppins', 'Montserrat', Arial, sans-serif; /* Fonte mais bonita */
+}
+@keyframes modalShow {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+.modal-conteudo img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 3px solid #ffb6b9;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 12px #e9456030;
+}
+.modal-descricao, #modal-titulo {
+    color: #ffffff;
+    font-family: 'Poppins', 'Montserrat', Arial, sans-serif;
+    text-shadow: 0 2px 12px #fff, 0 0px 2px #e9456022;
+}
+#modal-titulo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+.fechar-modal {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    background: #e94560;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #e9456030;
+    transition: background 0.2s;
+}
+.fechar-modal:hover {
+    background: #ffb6b9;
+    color: #e94560;
+}
+.chuva-coracoes, .chuva-kitty {
+    pointer-events: none;
+    position: fixed;
+    left: 0; top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+.chuva-coracao, .chuva-kitty-img {
+    position: absolute;
+    animation: cair-chuva linear infinite;
+    opacity: 0.85;
+    will-change: transform;
+}
+
+.chuva-coracao {
+    font-size: 2.2rem;
+    filter: drop-shadow(0 2px 8px #e9456080);
+}
+
+.chuva-kitty-img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px #e9456080);
+    opacity: 0.92;
+}
+
+@keyframes cair-chuva {
+    0% {
+        transform: translateY(-80px) scale(1) rotate(0deg);
+        opacity: 0.7;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(110vh) scale(1.1) rotate(30deg);
+        opacity: 0;
+    }
+}
+.data-pulsante {
+    color: #e94560;
+    font-weight: bold;
+    margin-left: 4px;
+    animation: pulsar-data 1.2s infinite alternate;
+    text-shadow: 0 0 8px #e9456080;
+    transition: color 0.2s;
+}
+
+@keyframes pulsar-data {
+    0%   { color: #e94560; transform: scale(1);}
+    50%  { color: #ffb6b9; transform: scale(1.13);}
+    100% { color: #e94560; transform: scale(1);}
+}
